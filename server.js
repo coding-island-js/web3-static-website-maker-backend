@@ -3,7 +3,6 @@ import dotenv from "dotenv";
 dotenv.config();
 import express from "express";
 import cors from "cors";
-import { test } from "./routes/test.js";
 
 import storeFilesWeb3Storage from "./routes/storeFilesWeb3Storage.js";
 
@@ -21,8 +20,6 @@ app.use(
 app.use(storeFilesWeb3Storage);
 
 // start server
-
-console.log("test: " + test);
 
 const port = process.env.PORT;
 

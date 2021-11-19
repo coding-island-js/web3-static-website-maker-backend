@@ -3,7 +3,7 @@ dotenv.config();
 import { Web3Storage, getFilesFromPath } from "web3.storage";
 
 export async function storeFiles(req, res) {
-  let path = "./upload/";
+  let path = "./files/";
 
   const token = req.body.token;
 
