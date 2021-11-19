@@ -1,0 +1,6 @@
+POST http://localhost:8080/store-files-web3-storage
+Content-Type: application/json
+
+{
+    "token": ""
+}
