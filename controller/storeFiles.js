@@ -4,7 +4,7 @@ import { Web3Storage, getFilesFromPath } from "web3.storage";
 import fs from "fs";
 
 export async function storeFiles(req, res) {
-  let path = "./files/";
+  let path = "./upload" + req.body.folderName + "/";
 
   const token = req.body.token;
 
@@ -23,11 +23,9 @@ export async function storeFiles(req, res) {
   const cid = await storage.put(files);
   console.log("Content added with CID:", cid);
 
-  const removePath = "./files";
-
   try {
     //  fs.rmdirSync(removePath);
-    fs.rmSync(removePath, { recursive: true });
+    fs.rmSync(path, { recursive: true });
   } catch (error) {
     console.error(error);
   }

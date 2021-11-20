@@ -5,7 +5,6 @@ import express from "express";
 import cors from "cors";
 import fileUpload from "express-fileupload";
 
-import storeFilesWeb3Storage from "./routes/storeFilesWeb3Storage.js";
 
 import receiveFilesFromClient from "./routes/receiveFilesFromClient.js";
 
@@ -22,8 +21,6 @@ app.use(
   })
 );
 
-//app.use(uploadFiles)
-app.use(storeFilesWeb3Storage);
 
 app.use(receiveFilesFromClient);
 
