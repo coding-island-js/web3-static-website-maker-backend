@@ -1,6 +1,7 @@
 import dotenv from "dotenv";
 dotenv.config();
 import { Web3Storage, getFilesFromPath } from "web3.storage";
+import fs from "fs";
 
 export async function storeFiles(req, res) {
   let path = "./files/";
@@ -22,8 +23,22 @@ export async function storeFiles(req, res) {
   const cid = await storage.put(files);
   console.log("Content added with CID:", cid);
 
+  const removePath = "./files";
+
+  try {
+    //  fs.rmdirSync(removePath);
+    fs.rmSync(removePath, { recursive: true });
+  } catch (error) {
+    console.error(error);
+  }
+
   //send cid in response
-  res.send("cid: " + cid);
+  //send response
+  res.json({
+    status: true,
+    message: "File is uploaded",
+    url: "https://" + cid + ".ipfs.dweb.link/files/index.html",
+  });
 }
 
 async function getFiles(path) {
