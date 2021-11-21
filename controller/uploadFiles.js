@@ -18,7 +18,9 @@ export async function uploadFiles(req, res, next) {
 
       console.log("files: " + imageFile);
       //Use the mv() method to place the file in upload directory (i.e. "uploads")
-      imageFile.mv("./upload" + req.body.folderName + "/" + imageFile.name);
+      imageFile.mv(
+        "./upload" + req.body.folderName + "/files/" + imageFile.name
+      );
       // imageFile.mv("./files/img/image");
 
       next();

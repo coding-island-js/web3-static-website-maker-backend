@@ -10,6 +10,11 @@ export async function createFolders(req, res, next) {
     fs.mkdirSync(tempDir);
   }
 
+  const childDir = tempDir + "/files/";
+
+  if (!fs.existsSync(childDir)) {
+    fs.mkdirSync(childDir);
+  }
   next();
 }
 //createFolders();

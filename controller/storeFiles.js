@@ -19,9 +19,22 @@ export async function storeFiles(req, res) {
   const files = await getFiles(path);
 
   console.log(`Uploading ${files.length} files`);
-  // store files
-  const cid = await storage.put(files);
-  console.log("Content added with CID:", cid);
+  try {
+    // store files
+    const cid = await storage.put(files);
+    console.log("Content added with CID:", cid);
+    //send cid in response
+    //send response
+    res.json({
+      status: true,
+      message: "File is uploaded",
+      url: "https://" + cid + ".ipfs.dweb.link/files/index.html",
+    });
+  } catch (error) {
+    res.status(400).json({ error: "incorrect token: " + error });
+    console.error("i found error: " + error);
+    return false;
+  }
 
   try {
     //  fs.rmdirSync(removePath);
@@ -29,14 +42,6 @@ export async function storeFiles(req, res) {
   } catch (error) {
     console.error(error);
   }
-
-  //send cid in response
-  //send response
-  res.json({
-    status: true,
-    message: "File is uploaded",
-    url: "https://" + cid + ".ipfs.dweb.link/files/index.html",
-  });
 }
 
 async function getFiles(path) {
