@@ -3,7 +3,7 @@ dotenv.config();
 import { Web3Storage, getFilesFromPath } from "web3.storage";
 import fs from "fs";
 
-export async function storeFiles(req, res) {
+export async function storeFilesToWeb3Storage(req, res) {
   let parentPath = "./upload" + req.body.folderName;
   let path = "./upload" + req.body.folderName + "/files/";
 

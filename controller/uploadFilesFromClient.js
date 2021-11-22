@@ -1,7 +1,4 @@
-import dotenv from "dotenv";
-dotenv.config();
-
-export async function uploadFiles(req, res, next) {
+export async function uploadFilesFromClient(req, res, next) {
   try {
     if (!req.files) {
       res.send({

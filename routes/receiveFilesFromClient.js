@@ -1,12 +1,19 @@
 import { Router } from "express";
 import { createFolders } from "../controller/createFolders.js";
-import { storeFiles } from "../controller/storeFiles.js";
-import { uploadFiles } from "../controller/uploadFiles.js";
+import { createHtmlFile } from "../controller/createHtmlFile.js";
+import { storeFilesToWeb3Storage } from "../controller/storeFilesToWeb3Storage.js";
+import { uploadFilesFromClient } from "../controller/uploadFilesFromClient.js";
+import { body } from "express-validator";
 
 const router = Router();
 
-router.post("/upload-files", createFolders, uploadFiles, storeFiles);
-
-//router.post("/upload-files", createFolders, uploadFiles);
+router.post(
+  "/upload-files",
+  body("websiteTitle").not().isEmpty().trim().escape(),
+  createFolders,
+  createHtmlFile,
+  uploadFilesFromClient,
+  storeFilesToWeb3Storage
+);
 
 export default router;
