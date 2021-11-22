@@ -4,7 +4,8 @@ import { Web3Storage, getFilesFromPath } from "web3.storage";
 import fs from "fs";
 
 export async function storeFiles(req, res) {
-  let path = "./upload" + req.body.folderName + "/";
+  let parentPath = "./upload" + req.body.folderName;
+  let path = "./upload" + req.body.folderName + "/files/";
 
   const token = req.body.token;
 
@@ -23,6 +24,7 @@ export async function storeFiles(req, res) {
     // store files
     const cid = await storage.put(files);
     console.log("Content added with CID:", cid);
+    await removeDir(parentPath);
     //send cid in response
     //send response
     res.json({
@@ -32,14 +34,8 @@ export async function storeFiles(req, res) {
   } catch (error) {
     res.status(403).json({ error: "incorrect token: " + error });
     console.error("i found error: " + error);
+    await removeDir(parentPath);
     return false;
-  }
-
-  try {
-    //  fs.rmdirSync(removePath);
-    fs.rmSync(path, { recursive: true });
-  } catch (error) {
-    console.error(error);
   }
 }
 
@@ -47,4 +43,13 @@ async function getFiles(path) {
   const files = await getFilesFromPath(path);
   console.log(`read ${files.length} file(s) from ${path}`);
   return files;
+}
+
+async function removeDir(path) {
+  try {
+    //  fs.rmdirSync(removePath);
+    fs.rmSync(path, { recursive: true });
+  } catch (error) {
+    console.error(error);
+  }
 }
