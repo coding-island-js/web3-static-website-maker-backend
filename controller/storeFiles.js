@@ -26,12 +26,11 @@ export async function storeFiles(req, res) {
     //send cid in response
     //send response
     res.json({
-      status: true,
       message: "File is uploaded",
       url: "https://" + cid + ".ipfs.dweb.link/files/index.html",
     });
   } catch (error) {
-    res.status(400).json({ error: "incorrect token: " + error });
+    res.status(403).json({ error: "incorrect token: " + error });
     console.error("i found error: " + error);
     return false;
   }
