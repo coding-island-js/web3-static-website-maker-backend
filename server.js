@@ -1,19 +1,8 @@
-let environment = "dev";
-let urlOrigin;
-
-if (environment === "dev") {
-  urlOrigin = "http://localhost:5500";
-}
-
-if (environment === "prod") {
-  urlOrigin = "https://web3-website-maker.netlify.app";
-}
-
 //server setup
 import dotenv from "dotenv";
 dotenv.config();
 import express from "express";
-import cors from "cors";
+
 import fileUpload from "express-fileupload";
 
 import receiveFilesFromClient from "./routes/receiveFilesFromClient.js";
@@ -24,12 +13,6 @@ app.use(express.json());
 
 // enable files upload
 app.use(fileUpload());
-
-app.use(
-  cors({
-    origin: urlOrigin,
-  })
-);
 
 app.use(receiveFilesFromClient);
 
