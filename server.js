@@ -1,3 +1,14 @@
+let environment = "dev";
+let urlOrigin;
+
+if (environment === "dev") {
+  urlOrigin = "http://localhost:5500";
+}
+
+if (environment === "prod") {
+  urlOrigin = "https://web3-website-maker.netlify.app";
+}
+
 //server setup
 import dotenv from "dotenv";
 dotenv.config();
@@ -16,7 +27,7 @@ app.use(fileUpload());
 
 app.use(
   cors({
-    origin: "https://web3-website-maker.netlify.app",
+    origin: urlOrigin,
   })
 );
 
