@@ -2,14 +2,18 @@
 import dotenv from "dotenv";
 dotenv.config();
 import express from "express";
-
+import cors from "cors";
 import fileUpload from "express-fileupload";
-
 import receiveFilesFromClient from "./routes/receiveFilesFromClient.js";
 
 const app = express();
 
 app.use(express.json());
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 
 // enable files upload
 app.use(fileUpload());
