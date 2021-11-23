@@ -16,7 +16,7 @@ app.use(fileUpload());
 
 app.use(
   cors({
-    origin: "https://web3-website-makers.netlify.app",
+    origin: "https://web3-website-maker.netlify.app",
   })
 );
 
