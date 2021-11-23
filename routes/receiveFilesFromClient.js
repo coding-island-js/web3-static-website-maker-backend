@@ -9,7 +9,8 @@ const router = Router();
 
 router.post(
   "/upload-files",
-  body("websiteTitle").not().isEmpty().trim().escape(),
+  body("headerTitle").not().isEmpty().trim().escape(),
+  body("altImage").not().isEmpty().trim().escape(),
   createFolders,
   createHtmlFile,
   uploadFilesFromClient,
