@@ -23,9 +23,13 @@ const corsOptions = {
   },
 };
 
+const corsOptions2 = {
+  origin: "*",
+};
+
 router.post(
   "/upload-files",
-  cors(corsOptions),
+  cors(corsOptions2),
   body("headerTitle").not().isEmpty().trim().escape(),
   body("altImage").not().isEmpty().trim().escape(),
   createFolders,
