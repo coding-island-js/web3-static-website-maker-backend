@@ -5,7 +5,6 @@ import express from "express";
 import cors from "cors";
 import fileUpload from "express-fileupload";
 
-
 import receiveFilesFromClient from "./routes/receiveFilesFromClient.js";
 
 const app = express();
@@ -17,10 +16,9 @@ app.use(fileUpload());
 
 app.use(
   cors({
-    origin: "*",
+    origin: "https://web3-website-maker.netlify.app",
   })
 );
-
 
 app.use(receiveFilesFromClient);
 
