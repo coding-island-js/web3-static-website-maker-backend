@@ -14,7 +14,7 @@ const prodOrigin = "https://web3-website-maker.netlify.app";
 
 const corsOptions = {
   origin: function (origin, callback) {
-    if (devOrigin.indexOf(origin) === -1) {
+    if (prodOrigin.indexOf(origin) === -1) {
       var message =
         "The CORS policy for this origin doesn't allow access from the particular origin.";
       return callback(new Error(message), false);
