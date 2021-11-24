@@ -1,19 +1,18 @@
-//server setup
+// server setup
 import dotenv from "dotenv";
 dotenv.config();
 import express from "express";
 import fileUpload from "express-fileupload";
+
+// API routes
 import receiveFilesFromClient from "./routes/receiveFilesFromClient.js";
 
 const app = express();
 
-app.use(express.json());
-
-
-
-// enable files upload
+// enable express-filesupload
 app.use(fileUpload());
 
+// bring the API routs
 app.use(receiveFilesFromClient);
 
 // start server

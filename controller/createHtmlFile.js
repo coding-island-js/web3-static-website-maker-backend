@@ -1,13 +1,18 @@
 import fs from "fs";
 
 export async function createHtmlFile(req, res, next) {
-  //sanitize website title input
+  // Assign variables to the received data
   let headerTitle = req.body.headerTitle;
+  // express-fileupload will put any file received from the frontend as req.files
   let imageFile = req.files.image;
   let srcImage = "/files/" + imageFile.name;
   let altImage = req.body.altImage;
+  // define folder path to store the files and user input
   let path = "./upload" + req.body.folderName + "/files/";
 
+  // create HTML file from the user input
+  // This is the website the app is making
+  // included CSS styling in the style tag
   let htmlContent = `<!DOCTYPE html>
 <html lang="en">
   <head>
@@ -107,11 +112,12 @@ export async function createHtmlFile(req, res, next) {
     }
   </style>
 </html>`;
-  //create html page and save html page to file folder
 
+  //create html page and save html page to file folder using the FS module
   fs.writeFile(path + "index.html", htmlContent, function (err) {
     if (err) throw err;
   });
 
+  // call next() to go to the next function on the route list
   next();
 }
