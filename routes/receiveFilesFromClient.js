@@ -7,8 +7,8 @@ import { uploadFilesFromClient } from "../controller/uploadFilesFromClient.js";
 import { body } from "express-validator";
 const router = Router();
 
-//const whitelist = [process.env.ORIGIN];
-const whitelist = ['http://localhost:5500'];
+const whitelist = [process.env.ORIGIN];
+
 const corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1) {
